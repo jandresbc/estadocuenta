@@ -20,7 +20,7 @@
 		
 		$concat .= "<br><div style='font-size:12px; margin-top:30px;'>Desarrollado por Ing. Julio Andres Barrera C. - devstudio.me - Copyright © 2011</div></div>";
 			
-		echo $trans->mixed_to_latin1($concat);
+		echo $trans->mixed_to_utf8($concat);
 			
 	}else if(isset($_REQUEST['pdf']) && $_REQUEST['pdf'] == 'si'){
 		require_once("librerias/_PDF.php");

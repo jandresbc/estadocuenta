@@ -37,8 +37,8 @@
 		afiliados.email
 		FROM
 		afiliados
-		Inner Join municipios_departamentos ON afiliados.municipio_labora = municipios_departamentos.divipola
-		Inner Join divipola ON afiliados.municipio_residencia = divipola.divipola";
+		Left Join municipios_departamentos ON afiliados.municipio_labora = municipios_departamentos.divipola
+		Left Join divipola ON afiliados.municipio_residencia = divipola.divipola";
 
 		/*condicional();
 		

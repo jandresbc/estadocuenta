@@ -1,7 +1,7 @@
 <?php
 
 
-$ruta = '/Users/juliobarrera/Desktop/developer/estadoCuenta/bin';
+$ruta = '/Users/juliobarrera/Desktop/developer/estadocuenta/bin';
 
 set_include_path(get_include_path().PATH_SEPARATOR.$ruta);
 

@@ -26,6 +26,6 @@ ob_start (); // Turn on output buffering
 		->query()->fetchAll();
 	}
 	
-	$datos = each($consulta);
+	$datos = $consulta[0];
 
 ?>

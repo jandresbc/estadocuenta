@@ -58,8 +58,6 @@ require_once 'librerias/db.class.php';
 			
 		}
 		
-		
-		
 		$res = $tabla->actualizar_simple("afiliados",$datos,"id_afiliado='".$_REQUEST['id_afiliado']."'");
 		
 		$tabla->data->commit();

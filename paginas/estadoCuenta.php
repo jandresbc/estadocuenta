@@ -19,10 +19,15 @@
 	->query()->fetchAll();
 	
 	$cuen2 = $tabla->data->select()
-	->from("estadocuenta")
-	->where("cedula='".trim($_SESSION['documento'])."'")
+	->from("movimientos_cuenta")
+	->where("identificacion='".trim($_SESSION['documento'])."'")
+	->where("tipo_credito = 'Aporte'")
 	->query()->fetchAll();
 	
+	$totalAportes=0;
+	foreach($cuen2 as $value){
+		$totalAportes += $value["valor_cuota_abono"];
+	}
 	
 ?>
 <!DOCTYPE html>
@@ -89,7 +94,7 @@
 		  border-bottom:1px solid #DDD;
 		  color:#000;
 		  padding:3px;
-		  font-size:10px;
+		  font-size:12px;
 		}
 		.tituloEncabezado{
 			color:#F90;
@@ -141,7 +146,7 @@
         <?php if(isset($_SESSION['asociado']) && $_SESSION['asociado'] == "S"){ ?>
         <tr>
             <td class='cells' align='left' style='border-top:1px solid #DDD; width:180px; color:#F90; text-align:left;'><span class="tituloEncabezado" style="font-size:13px;"><strong>Aporte social:</strong></span></td>
-            <td class='cells' align="left" style='text-align:left; border-top:1px solid #DDD;' colspan="8"><a href="JavaScript:AjaxUrl('../bin/movimientosaportes.php','codigo=<?php echo $cuen2[0]['codigo'];?>','movimientosAportes');" class='link' style='color:#00F;' title="Click para ver movimientos"><?php echo number_format($cuen2[0]["sal_apor"], 0, '', '.'); ?></a>
+            <td class='cells' align="left" style='text-align:left; border-top:1px solid #DDD;' colspan="8"><a href="JavaScript:AjaxUrl('../bin/movimientosaportes.php','codigo=<?php echo $cuen2[0]['codigo_cuenta'];?>','movimientosAportes');" class='link' style='color:#00F;' title="Click para ver movimientos">$ <?php echo number_format($totalAportes, 0, '', '.'); ?></a>
             
             </td>
         </tr>

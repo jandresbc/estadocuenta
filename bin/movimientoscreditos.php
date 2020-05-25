@@ -13,10 +13,15 @@ require_once 'librerias/utf8.php';
 	$totalint = 0;
 	$total = 0;
 	
+	// $movcre = $tabla->data->select()
+	// ->from("movimientoscreditos")
+	// ->where("nro_cre like '%".(int)$_REQUEST['credito']."%'")
+	// ->where("cedula = '".$_SESSION['documento']."'")
+	// ->query()->fetchAll();
 	$movcre = $tabla->data->select()
-	->from("movimientoscreditos")
-	->where("nro_cre like '%".(int)$_REQUEST['credito']."%'")
-	->where("cedula = '".$_SESSION['documento']."'")
+	->from("movimientos_cuenta")
+	->where("codigo_cuenta like '%".(int)$_REQUEST['credito']."%'")
+	->where("identificacion = '".$_SESSION['documento']."'")
 	->query()->fetchAll();
 	
 	if(count($movcre) > 0){
@@ -37,20 +42,21 @@ require_once 'librerias/utf8.php';
 		
 		
 		foreach($movcre as $fila){
+			$fecha = new DateTime($fila["fecha_movimiento"]);
 			$html .=  "<tr align='center'>";
-			$html .=  "<td>".$fila["nro_cre"]."</td>";
-			$html .=  "<td>".$fila["linea_cre"]."</td>";
-			$html .=  "<td>".$fila["fecha"]."</td>";
-			$html .=  "<td>".$fila["descrip"]."</td>";
-			$html .=  "<td>".$fila["cuota"]."</td>";
-			$html .=  "<td>".$fila["capital"]."</td>";
-			$html .=  "<td>".$fila["intereses"]."</td>";
-			$html .=  "<td colspan='2'>".number_format($fila["vr_pagado"], 0, '', '.')."</td>";
+			$html .=  "<td>".$fila["codigo_cuenta"]."</td>";
+			$html .=  "<td>".$fila["tipo_credito"]."</td>";
+			$html .=  "<td>".$fecha->format("Y-m-d")."</td>";
+			$html .=  "<td>".$fila["descripcion"]."</td>";
+			$html .=  "<td>".$fila["nro_cuota"]."</td>";
+			$html .=  "<td>".number_format($fila["capital"],0,'','.')."</td>";
+			$html .=  "<td>".$fila["interes"]."</td>";
+			$html .=  "<td colspan='2'>".number_format($fila["valor_cuota_abono"], 0, '', '.')."</td>";
 			$html .=  "</tr>";
 			
 			$totalcap += $fila["capital"];
-			$totalint += $fila["intereses"];
-			$total += $fila["vr_pagado"];	
+			$totalint += $fila["interes"];
+			$total += $fila["valor_cuota_abono"];	
 		}
 		
 		$html .=  "<tr align='center'>";

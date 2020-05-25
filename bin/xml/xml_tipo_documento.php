@@ -23,15 +23,15 @@ $variable = NULL;
 
 
 echo "<complete>";
-while ($row = each($resultados)){
+foreach ($resultados as $row){
 	if(isset($_GET['tipo'])){
 		if($_GET['tipo'] == $row[1]['id_tipo_doc']){
-			$variable = $variable ."<option value=\"".$row[1]['id_tipo_doc']."\" selected='selected'>".$trans->mixed_to_utf8($row[1]['tipo_doc']) . "</option>";
+			$variable = $variable ."<option value=\"".$row['id_tipo_doc']."\" selected='selected'>".$trans->mixed_to_utf8($row['tipo_doc']) . "</option>";
 		}else{
-			$variable = $variable ."<option value=\"".$row[1]['id_tipo_doc']."\">".$trans->mixed_to_utf8($row[1]['tipo_doc']) . "</option>";
+			$variable = $variable ."<option value=\"".$row['id_tipo_doc']."\">".$trans->mixed_to_utf8($row['tipo_doc']) . "</option>";
 		}
 	}else{
-		$variable = $variable ."<option value=\"".$row[1]['id_tipo_doc']."\">".$trans->mixed_to_utf8($row[1]['tipo_doc']) . "</option>";
+		$variable = $variable ."<option value=\"".$row['id_tipo_doc']."\">".$trans->mixed_to_utf8($row['tipo_doc']) . "</option>";
 	}
 }
 echo $variable;

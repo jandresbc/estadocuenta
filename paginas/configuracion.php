@@ -45,14 +45,14 @@
                                 <input type="radio" name="opcionesSubirArchivos" value="UploadHandler.php" id="opcionesSubirArchivos_0" checked="checked" />
                                 Estado de Cuenta</label>
                                 <br />
-                                <label>
+                                <!--<label>
                                 <input type="radio" name="opcionesSubirArchivos" value="UploadHandler2.php" id="opcionesSubirArchivos_1" disabled="disabled" />
                                 Movimientos Aportes</label>
                                 <br />
                                 <label>
                                 <input type="radio" name="opcionesSubirArchivos" value="UploadHandler3.php" id="opcionesSubirArchivos_2" disabled="disabled" />
                                 Movimientos Créditos</label>
-                                <br />
+                                <br />-->
                             </p>
                             <div align="center" style="border:1px #333; width:100%;">
                                 <input type="button" class="btn btn-info" id="btsincronizar" name="btsincronizar" value="Sincronizar"  onclick="sincronizar()"/>

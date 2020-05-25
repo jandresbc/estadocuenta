@@ -38,8 +38,9 @@
 		  
 		  $doc = substr( $resultado[0]["nro_documento"],-6,6);
 		  
-		  $cons = $db->data->select()->from("estadocuenta")
-		  ->where("cedula='".$resultado[0]["nro_documento"]."'")
+		  $cons = $db->data->select()->from("movimientos_cuenta")
+		  ->where("identificacion='".$resultado[0]["nro_documento"]."'")
+		  ->where("tipo_credito = 'Aporte'")
 		  ->query()->fetchAll();
 		  if(count($cons)>0){
 			  if($cons[0]['asociado'] == "S"){
